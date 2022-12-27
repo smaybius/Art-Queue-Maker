@@ -1,0 +1,78 @@
+﻿<Window x:Class="Art_queue_maker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Art_queue_maker"
+        mc:Ignorable="d"
+        SizeToContent="Width"
+        Title="{Binding WindowTitle}" Height="450" Width="341">
+    <Grid PreviewKeyDown="Grid_PreviewKeyDown" Margin="0,0,0,-1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*" />
+                
+                <RowDefinition Height="90*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="90*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="Entry" TextWrapping="Wrap" Text="" VerticalAlignment="Top" KeyDown="Entry_KeyDown" KeyUp="Entry_KeyUp" Grid.Column="0" Grid.Row="0" Margin="0,24,34,0" Height="25" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+            <Grid x:Name="LeftGrid" Margin="0,15,0,10" Width="307" Grid.Row="1">
+                <ListBox x:Name="LinkList" HorizontalContentAlignment="Stretch" IsSynchronizedWithCurrentItem="False" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+            </Grid>
+
+            <Menu VerticalAlignment="Top">
+                <MenuItem Header="File">
+                    <MenuItem x:Name="NewMenu" Header="New" Click="NewMenu_Click"/>
+                    <MenuItem x:Name="OpenMenu" Header="Open" Click="OpenMenu_Click"/>
+                    <MenuItem x:Name="SaveMenu" Header="Save" Click="SaveMenu_Click"/>
+                    <MenuItem x:Name="SaveAsMenu" Header="Save As..." Click="SaveAsMenu_Click"/>
+                </MenuItem>
+                <MenuItem Header="Edit">
+                    <MenuItem x:Name="UndoButton" Header="Unremove (Ctrl + Z)" Click="UndoButton_Click" IsEnabled="False"/>
+                </MenuItem>
+                <MenuItem Header="Help">
+                    <MenuItem x:Name="InstructMenu" Header="Instructions" Click="InstructMenu_Click"/>
+                    <MenuItem x:Name="AboutMenu" Header="About" Click="AboutMenu_Click"/>
+                </MenuItem>
+            </Menu>
+
+            <Grid Margin="0,15,0,10" Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="10*" />
+                </Grid.RowDefinitions>
+                <Button x:Name="AddButton" Content="+" VerticalAlignment="Top" Width="28" Height="28" IsEnabled="True" Click="AddButton_Click" Grid.Row="0"/>
+                <Button x:Name="RemoveButton" Content="-" VerticalAlignment="Top" Width="28" Height="28" IsEnabled="False" Click="RemoveButton_Click" Grid.Row="1"/>
+                <Button x:Name="TopButton" Content="^^" VerticalAlignment="Top" Width="28" Height="28" IsEnabled="False" Click="TopButton_Click" Grid.Row="2"/>
+                <Button x:Name="UpButton" Content="^" VerticalAlignment="Top" Width="28" Height="28" IsEnabled="False" Click="UpButton_Click" Grid.Row="3"/>
+                <Button x:Name="DownButton" Content="v" VerticalAlignment="Top" Width="28" Height="28" IsEnabled="False" Click="DownButton_Click" Grid.Row="4"/>
+                <Button x:Name="BottomButton" Content="v v" VerticalAlignment="Top" Width="28" Height="28" IsEnabled="False" Click="BottomButton_Click" Grid.Row="5"/>
+            </Grid>
+        </Grid>
+        <GridSplitter Grid.Row="1" Grid.ColumnSpan="1"
+              HorizontalAlignment="Stretch" Height="5"
+                          ResizeDirection="Rows"
+              />
+        <Grid Grid.Row="2">
+
+            <Button x:Name="PopButton" Content="Pop to Clipboard" Margin="105,0,121,15" VerticalAlignment="Bottom" Click="PopButton_Click"/>
+            <RadioButton x:Name="ClipboardRadio" Content="Clipboard" HorizontalAlignment="Left" Margin="10,0,0,18" VerticalAlignment="Bottom" IsChecked="True" Checked="ClipboardRadio_Checked"/>
+            <RadioButton x:Name="ArchiveRadio" Content="Archive.today" HorizontalAlignment="Right" Margin="0,0,10,19" VerticalAlignment="Bottom" Checked="ArchiveRadio_Checked"/>
+        </Grid>
+
+
+
+    </Grid>
+</Window>
